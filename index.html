@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,39 @@
     <link rel="stylesheet" href="style.css">
     <title>TOP Rock Paper Scissors</title>
 </head>
+
 <body>
     <section>
         <div class="container">
-            <h1>Rock Paper Scissors Combat</h1>
-            <div class="typewriter">
-                <h1>Test Your Might! Get Over Here!</h1>
+            <h1 class="headline">Rock Paper Scissors Combat</h1>
+            <div class="btns__actions">
+                <button class="btn" data-element="rock">Rock</button>
+                <button class="btn" data-element="paper">Paper</button>
+                <button class="btn" data-element="scissors"">Scissors</button>
             </div>
+            <div class="game__information">
+                    <div class="jumbotron-info">
+                        <span>Computer choice:</span>
+                        <h3 class="computer--result" id="computerSelectionContainer"></h3>
+                    </div>
+                    <div class="jumbotron-info">
+                        <span>Your choice:</span>
+                        <h3 class="player--result" id="playerSelectionContainer"></h3>
+                    </div>
+            </div>
+            <div class="score">
+                <div>Computer score:
+                    <span class="computer-score" id="computerScoreInfo"></span>
+                </div>
+                <div>Your score:
+                    <span class="player-score" id="playerScoreInfo"></span>
+                </div>
+            </div>
+            <h1 id="textResult"></h1>
         </div>
 
     </section>
     <script src="index.js"></script>
 </body>
+
 </html>

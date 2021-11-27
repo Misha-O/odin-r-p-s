@@ -1,47 +1,47 @@
-const MAX_GAMES = 4
-let counter = 0
+const btnActions = document.querySelectorAll('[data-element]')
+const playerSelectionContainer = document.getElementById('playerSelectionContainer')
+const computerSelectionContainer = document.getElementById('computerSelectionContainer')
+const computerScoreInfo = document.getElementById('computerScoreInfo')
+const playerScoreInfo = document.getElementById('playerScoreInfo')
+const textResult = document.getElementById('textResult')
+const MAX_GAMES = 5
+let computerScore = 0
+let playerScore = 0
 
 const computerPlay = () => {
-    const OPTIONS = ['rock', 'paper', 'scissors']
-    let selectedIndex = Math.floor(Math.random() * OPTIONS.length)
-    let selectedOption = OPTIONS.splice(selectedIndex, 1).toString().toLowerCase()
+    let selectedIndex = Math.floor(Math.random() * ['rock', 'paper', 'scissors'].length)
+    let selectedOption = ['rock', 'paper', 'scissors'].splice(selectedIndex, 1).toString().toLowerCase()
     return selectedOption
 }
-
-const playerPlay = () => {
-    const USER_CHOICE = prompt('Which is it, rock, paper or scissors ?').toLowerCase().trim()
-
-    if (USER_CHOICE === 'rock' || USER_CHOICE === 'paper' || USER_CHOICE === 'scissors') {
-        return USER_CHOICE
-    }
-
-    alert('Error, you can only choose between: rock, paper, scissors')
-    return false
-}
-
-function playRound(computerSelection, playerSelection) {
-switch (key) {
-    case value:
-        
-        break;
-
-    default:
-        break;
-}
+const playRound = (event, computerSelection) => {
+    let playerSelection = event.target.dataset.element
+    playerSelectionContainer.innerText = playerSelection
+    computerSelectionContainer.innerText = computerSelection
+    
     if (
         (computerSelection === 'rock' && playerSelection === 'scissors') ||
         (computerSelection === 'paper' && playerSelection === 'rock') ||
         (computerSelection === 'scissors' && playerSelection === 'paper')
     ) {
-        return 'Fatality!'
-    } else if (
-        (computerSelection === playerSelection)) {
-        return 'Tie'
+        computerScore++
+        computerScoreInfo.innerText = Number(computerScore)
+        return (textResult.innerText = 'Fatality! You lost.')
+    } else if (computerSelection === playerSelection) {
+        return (textResult.innerText = 'Draw')
     } else {
-        return "Winner"
+        playerScore++
+        playerScoreInfo.innerText = Number(playerScore)
+        return (textResult.innerText = 'Congratulations! You won.')
     }
+    
 }
-while (counter <= MAX_GAMES) {
-    counter++
-    console.log(playRound(computerPlay(), playerPlay()));
-}
+
+btnActions.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+        if (computerScore < MAX_GAMES && playerScore < MAX_GAMES) {
+            playRound(e, computerPlay())
+        } else {
+            textResult.innerText = 'The winner is ' + (computerScore > playerScore ? 'computer' : 'player') + '. Please reload the page if you want to play again.'
+        }
+    })
+})
